@@ -1,5 +1,24 @@
 import { assert } from "$std/assert/mod.ts";
 
+export function getRandomNumber(bytes = 32, modulus?: bigint) {
+  const array = new Uint8Array(bytes);
+
+  crypto.getRandomValues(array);
+
+  // See: https://stackoverflow.com/a/75259983
+  const hexString = Array.from(array)
+    .map((i) => i.toString(16).padStart(2, "0"))
+    .join("");
+
+  const number = BigInt(`0x${hexString}`);
+
+  if (modulus) {
+    return mod(number, modulus);
+  }
+
+  return number;
+}
+
 export function mod(a: bigint, b: bigint) {
   const result = a % b;
   return result >= 0 ? result : result + b;
@@ -57,4 +76,48 @@ export function inverseOf(number: bigint, modulus: bigint) {
   assert(mod(number * x + modulus * y, modulus) === gcd);
 
   return mod(x, modulus);
+}
+
+export function int2Hex(number: bigint, prefix = true, pad = true) {
+  const padding = pad ? 32 : 1;
+  const result = buf2hex(int2BytesBe(number, padding), false);
+
+  if (prefix) {
+    return `0x${result}`;
+  }
+
+  return result;
+}
+
+// See: https://stackoverflow.com/a/40031979
+export function buf2hex(buffer: Uint8Array, prefix = true) {
+  const result = [...new Uint8Array(buffer)]
+    .map((x) => x.toString(16).padStart(2, "0"))
+    .join("");
+
+  if (prefix) {
+    return `0x${result}`;
+  }
+
+  return result;
+}
+
+// See: https://stackoverflow.com/a/56943145
+export function int2BytesBe(int: bigint, padding = 32) {
+  return int2BytesLe(int, padding).reverse();
+}
+
+// See: https://stackoverflow.com/a/56943145
+export function int2BytesLe(int: bigint, padding = 32) {
+  const result = new Uint8Array(padding);
+
+  let i = 0;
+  let bigint = int;
+  while (bigint > 0n) {
+    result[i] = Number(bigint % 256n);
+    bigint = bigint / 256n;
+    i += 1;
+  }
+
+  return result;
 }
