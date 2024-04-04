@@ -1,6 +1,10 @@
 {
   "tasks": {
-    "dev": "deno run --watch ./src/main.ts"
+    "dev": "deno run --watch ./src/main.ts",
+    "keys": "deno run --allow-env ./src/scripts/generate-keys.ts",
+    "sign": "deno run --allow-env ./src/scripts/sign-message.ts",
+    "send": "deno run --allow-env --allow-net ./src/scripts/send-eth.ts",
+    "balance": "deno run --allow-env --allow-net ./src/scripts/get-balance.ts"
   },
   "imports": {
     "$std/": "https://deno.land/std@0.220.0/",
