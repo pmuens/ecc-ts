@@ -9,4 +9,5 @@ export type SharedSecret = Point;
 export type Signature = {
   r: bigint;
   s: bigint;
+  v?: bigint;
 };

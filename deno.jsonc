@@ -3,6 +3,7 @@
     "dev": "deno run --watch ./src/main.ts"
   },
   "imports": {
-    "$std/": "https://deno.land/std@0.220.0/"
+    "$std/": "https://deno.land/std@0.220.0/",
+    "$ethers": "https://esm.sh/ethers@6.11.1/"
   }
 }
