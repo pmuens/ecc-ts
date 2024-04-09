@@ -18,7 +18,7 @@ export class Signer extends ethers.AbstractSigner {
   }
 
   async getAddress(): Promise<string> {
-    return await this.ecdsa.getAddress();
+    return this.ecdsa.getAddress();
   }
 
   connect(provider: ethers.Provider | null): ethers.Signer {
