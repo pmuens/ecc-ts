@@ -1,4 +1,4 @@
-import { assertEquals } from "$std/assert/mod.ts";
+import { expect } from "$std/expect/mod.ts";
 import { describe, it } from "$std/testing/bdd.ts";
 
 import { ECDH } from "./ecdh.ts";
@@ -22,15 +22,17 @@ describe("ECDH", () => {
     const sharedSecretAlice = ecdhAlice.deriveSecret(ecdhBob.pk);
     const sharedSecretBob = ecdhBob.deriveSecret(ecdhAlice.pk);
 
-    assertEquals(sharedSecretAlice.x, sharedSecretBob.x);
-    assertEquals(sharedSecretAlice.y, sharedSecretBob.y);
+    expect(sharedSecretAlice.x).toBe(sharedSecretBob.x);
+    expect(sharedSecretAlice.y).toBe(sharedSecretBob.y);
 
-    assertEquals(
+    expect(
       int2Hex(sharedSecretAlice.x),
+    ).toBe(
       "0x3e2ffbc3aa8a2836c1689e55cd169ba638b58a3a18803fcf7de153525b28c3cd",
     );
-    assertEquals(
+    expect(
       int2Hex(sharedSecretAlice.y),
+    ).toBe(
       "0x043ca148c92af58ebdb525542488a4fe6397809200fe8c61b41a105449507083",
     );
   });
@@ -42,7 +44,7 @@ describe("ECDH", () => {
     const sharedSecretAlice = ecdhAlice.deriveSecret(ecdhBob.pk);
     const sharedSecretBob = ecdhBob.deriveSecret(ecdhAlice.pk);
 
-    assertEquals(sharedSecretAlice.x, sharedSecretBob.x);
-    assertEquals(sharedSecretAlice.y, sharedSecretBob.y);
+    expect(sharedSecretAlice.x).toBe(sharedSecretBob.x);
+    expect(sharedSecretAlice.y).toBe(sharedSecretBob.y);
   });
 });

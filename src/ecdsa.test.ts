@@ -1,4 +1,4 @@
-import { assertEquals } from "$std/assert/mod.ts";
+import { expect } from "$std/expect/mod.ts";
 import { describe, it } from "$std/testing/bdd.ts";
 
 import { ECDSA } from "./ecdsa.ts";
@@ -23,7 +23,7 @@ describe("ECDSA", () => {
       ),
     });
 
-    assertEquals(isValid, true);
+    expect(isValid).toBe(true);
   });
 
   it("should generate a valid signature when the private key is known", async () => {
@@ -37,7 +37,7 @@ describe("ECDSA", () => {
     const signature = await ecdsa.sign(message);
     const isValid = await ecdsa.verify(publicKey, message, signature);
 
-    assertEquals(isValid, true);
+    expect(isValid).toBe(true);
   });
 
   it("should generate a signature when the private key is randomized", async () => {
@@ -48,6 +48,6 @@ describe("ECDSA", () => {
     const signature = await ecdsa.sign(message);
     const isValid = await ecdsa.verify(publicKey, message, signature);
 
-    assertEquals(isValid, true);
+    expect(isValid).toBe(true);
   });
 });

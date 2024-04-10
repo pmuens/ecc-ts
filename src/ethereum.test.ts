@@ -1,4 +1,4 @@
-import { assertEquals } from "$std/assert/mod.ts";
+import { expect } from "$std/expect/mod.ts";
 import { describe, it } from "$std/testing/bdd.ts";
 import {
   decodeRlp,
@@ -21,7 +21,7 @@ describe("Ethereum ECDSA", () => {
 
     const isValid = isAddress(address);
 
-    assertEquals(isValid, true);
+    expect(isValid).toBe(true);
   });
 
   it("should generate a valid message signature", async () => {
@@ -49,8 +49,9 @@ describe("Ethereum ECDSA", () => {
       }),
     );
 
-    assertEquals(
+    expect(
       address.toLocaleLowerCase(),
+    ).toBe(
       recoveredAddress.toLocaleLowerCase(),
     );
   });
@@ -82,7 +83,7 @@ describe("Ethereum ECDSA", () => {
       s: BigInt(s),
     });
 
-    assertEquals(isValid, true);
+    expect(isValid).toBe(true);
   });
 
   it("should generate a valid transaction signature", async () => {
@@ -115,8 +116,9 @@ describe("Ethereum ECDSA", () => {
       serializedTx.signature,
     );
 
-    assertEquals(
+    expect(
       address.toLocaleLowerCase(),
+    ).toBe(
       recoveredAddress.toLocaleLowerCase(),
     );
   });
@@ -157,6 +159,6 @@ describe("Ethereum ECDSA", () => {
       },
     );
 
-    assertEquals(isValid, true);
+    expect(isValid).toBe(true);
   });
 });

@@ -1,5 +1,5 @@
+import { expect } from "$std/expect/mod.ts";
 import { describe, it } from "$std/testing/bdd.ts";
-import { assertEquals, assertExists, assertMatch } from "$std/assert/mod.ts";
 
 import { ECC } from "./ecc.ts";
 import { int2Hex } from "./utils.ts";
@@ -12,16 +12,19 @@ describe("ECC", () => {
     const ecc = new ECC(privateKey);
     const publicKey = ecc.pk;
 
-    assertEquals(
+    expect(
       int2Hex(publicKey.x),
+    ).toBe(
       "0x86b1aa5120f079594348c67647679e7ac4c365b2c01330db782b0ba611c1d677",
     );
-    assertEquals(
+    expect(
       int2Hex(publicKey.y),
+    ).toBe(
       "0x5f4376a23eed633657a90f385ba21068ed7e29859a7fab09e953cc5b3e89beba",
     );
-    assertEquals(
+    expect(
       ecc.getPublicKey(),
+    ).toBe(
       "0x0486b1aa5120f079594348c67647679e7ac4c365b2c01330db782b0ba611c1d6775f4376a23eed633657a90f385ba21068ed7e29859a7fab09e953cc5b3e89beba",
     );
   });
@@ -30,8 +33,8 @@ describe("ECC", () => {
     const ecc = new ECC();
     const publicKey = ecc.pk;
 
-    assertExists(int2Hex(publicKey.x));
-    assertExists(int2Hex(publicKey.y));
-    assertMatch(ecc.getPublicKey(), /^0x04.+$/);
+    expect(int2Hex(publicKey.x)).not.toBeUndefined();
+    expect(int2Hex(publicKey.y)).not.toBeUndefined();
+    expect(ecc.getPublicKey()).toMatch(/^0x04.+$/);
   });
 });
