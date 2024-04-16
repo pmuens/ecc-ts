@@ -2,7 +2,7 @@
 
 A "from scratch" [Elliptic Curve Cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography) implementation in [TypeScript](https://www.typescriptlang.org) using the [Deno](https://deno.com) JavaScript runtime.
 
-This repository includes code for the [Elliptic-Curve Diffie-Hellman (ECDH)](https://muens.io/elliptic-curve-diffie-hellman) key agreement protocol as well as the [Elliptic-Curve Digital Signature Algorithm (ECDSA)](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). Both are implemented on top of the [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) curve that's also used in Bitcoin and Ethereum.
+This repository includes code for the [Elliptic-Curve Diffie-Hellman (ECDH)](https://muens.io/elliptic-curve-diffie-hellman) key agreement protocol as well as the [Elliptic-Curve Digital Signature Algorithm (ECDSA)](https://muens.io/elliptic-curve-digital-signature-algorithm). Both are implemented on top of the [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) curve that's also used in Bitcoin and Ethereum.
 
 In addition to a "raw" ECDSA implementation there's also one that can be used to sign messages and transact on the [Ethereum](https://ethereum.org) Blockchain. To do so easily, an [Ethers](https://github.com/ethers-io/ethers.js) v6 compliant [Signer](https://docs.ethers.org/v6/api/providers/#Signer) was implemented which wraps the ECDSA functionalities.
 
